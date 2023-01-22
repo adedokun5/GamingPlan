@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  
+  <title>Frontend Mentor | Multi-step form</title>
+</head>
+<body>
+  <main id="body">
+    <!-- Start sidebar -->
+    <aside class="sidebar">
+      <div class="steps-container">  
+        <div class="step-div">
+           <div id="step_1_div" class="active"> <span class="step"> 1 </span> </div>
+           <div class="step-title">
+              <span>step 1</span><br>
+              <span> <strong>your info</strong></span>
+           </div>
+        </div>
+        <div class="step-div">
+           <div id="step_2_div" > <span class="step"> 2 </span> </div>
+           <div class="step-title">
+              <span>step 2</span><br>
+              <span> <strong>select plan</strong></span>
+           </div>
+        </div>
+        <div class="step-div">
+           <div id="step_3_div"> <span class="step"> 3 </span> </div>
+           <div class="step-title">
+              <span>step 3</span><br>
+              <span> <strong>Add-ons</strong></span>
+           </div>
+        </div>
+        <div class="step-div">
+           <div id="step_4_div"> <span class="step"> 4 </span> </div>
+           <div class="step-title">
+              <span>step 4</span><br>
+              <span> <strong>summary</strong></span>
+           </div>
+        </div>
+      </div>
+    </aside>
+    <!-- End sidebar-->
+
+    <section class="step-contents">
+      <div class="contents">
+        <!-- Step 1 start -->
+        <div id="personal_info_div">
+          <h1 class="content-title">Personal info</h1>
+          <p class="content-subtitle">Please provide your name, email address, and phone number.</p>
+          <div>
+            <div class="field-details">
+              <label for="name">Name <span class="require">*</span></label>
+              <span class="name-msg"></span>
+            </div>
+            <div>
+              <input type="text" name="name" id="name" autofocus required placeholder=" e.g. stephen king">
+            </div>
+          </div>
+          <div>
+            <div class="field-details">
+              <label for="email">Email <span class="require">*</span></label>
+              <span class="email-msg"></span>
+            </div>            
+            <div>
+              <input type="email" name="email" id="email" required placeholder=" e.g. stephenking@lorem.com">
+            </div>
+          </div>
+          <div>
+            <div class="field-details">
+              <label for="phone_num">Phone Number <span class="require">*</span></label>
+              <span class="phone-num-msg"></span>
+            </div>            
+            <div>
+              <input type="tel" name="phone_num" id="phone_num" maxlength="11" required placeholder=" 08106614197">
+            </div>
+          </div>
+        </div>
+        <!-- Step 1 end -->
+
+        <!-- Step 2 start -->
+        <div id="plan_div">
+          <h1 class="content-title">Select your plan</h1>
+          <p class="content-subtitle">You have the option of monthly or yearly billing.</p>
+          <div class="plans-div">
+            <div id="arcade_plan">
+              <input type="hidden" id="arcade_plan_state" value="not selected">
+              <span class="plan-icon">
+                <img src="assets/images/icon-arcade.svg">
+              </span>
+              <span class="plan-details-arcade">
+                <span class="plan-type">Arcade</span><br>
+                <span class="arcade-price">$9/mo</span><br>
+               
+              </span>
+            </div>
+            <div id="advanced_plan">
+              <input type="hidden" id="advanced_plan_state" value="not selected">
+              <span class="plan-icon">
+                <img src="assets/images/icon-advanced.svg">
+              </span>
+              <span class="plan-details-advanced">
+                <span class="plan-type">Advanced</span><br>
+                <span class="advanced-price">$12/mo</span><br>
+               
+              </span>
+            </div>            
+            <div id="pro_plan">
+              <input type="hidden" id="pro_plan_state" value="not selected">
+              <span class="plan-icon">
+                <img src="assets/images/icon-pro.svg">
+              </span>
+              <span class="plan-details-pro">
+                <span class="plan-type">Pro</span><br>
+                <span class="pro-price">$15/mo</span><br>
+               
+              </span>
+            </div>          
+          </div>
+          <div class="btn-div">
+            <span>
+              <button class="active-plan" id="btn_month">Monthly</button>
+            </span>
+            <span>
+              <button class="btn"><span id="btn-dot"></span></button>
+              <input type="hidden" name="state" id="state" value="monthly">
+            </span>
+            <span>
+              <button id="btn_year">Yearly</button>
+            </span>
+          </div>
+        </div>
+        <!-- Step 2 end -->
+
+        <!-- Step 3 start -->
+        <div id="add_on_div">
+          <h1 class="content-title">Pick add-ons</h1>
+          <p class="content-subtitle">Add-ons help enhance your gaming experience.</p>
+
+          <div class="add-ons-div">
+            <div class="add-on-info-div">
+              <input type="checkbox" class="checkboxes" name="">
+              <span class="add-on-info">
+                <span class="package" >Online service</span><br>
+                <span class="package-info">Access to multiplayer games</span>
+              </span>
+            </div>
+            <div class="add-on-price">
+              <p>+$1/mo</p>
+            </div>
+          </div>
+          <div class="add-ons-div">
+            <div class="add-on-info-div">
+              <input type="checkbox" class="checkboxes" name="">
+              <span class="add-on-info">
+                <span class="package" >Large storage</span><br>
+                <span class="package-info">Extra 1TB of cloud save</span>
+              </span>
+            </div>
+            <div class="add-on-price">
+              <p>+$2/mo</p>
+            </div>
+          </div>
+          <div class="add-ons-div">
+            <div class="add-on-info-div">
+              <input type="checkbox" class="checkboxes" name="">
+              <span class="add-on-info">
+                <span class="package" >Customizable profile</span><br>
+                <span class="package-info">Custom theme on your profile</span>
+              </span>
+            </div>
+            <div class="add-on-price">
+              <p>+$2/mo</p>
+            </div>
+          </div>
+        </div>
+        <!-- Step 3 end -->
+
+        <!-- Step 4 start -->
+        <div id="finishing_up_div">
+          <h1 class="content-title">Finishing up</h1>
+          <p class="content-subtitle">Double-check everything looks OK before confirming.</p>
+
+        </div>
+
+        <!-- Dynamically add subscription and add-on selections here -->
+        <!-- Step 4 end -->
+
+        <!-- Step 5 start -->
+        <div id="thank_you_div">
+          <img src="assets/images/icon-thank-you.svg" class="thank-you-icon">
+          <h1 class="thank-you-text">Thank you!</h1>
+          <p>
+            Thanks for confirming your subscription! We hope you have fun using our platform, If you ever need support, please feel free to email us at support@loremgaming.com.
+          </p>
+        </div>
+        <!-- Step 5 end -->
+
+        <div class="nav-btn-div">
+          <div class="nav-btns">
+            <button id="previous_btn" >go back</button>
+            <button id="btn_disabled" disabled >Next step</button>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+  </main>
+  <script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+</html>
