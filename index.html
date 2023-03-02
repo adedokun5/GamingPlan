@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  
   <title>Frontend Mentor | Multi-step form</title>
 </head>
 <body>
@@ -95,7 +93,6 @@
               <span class="plan-details-arcade">
                 <span class="plan-type">Arcade</span><br>
                 <span class="arcade-price">$9/mo</span><br>
-               
               </span>
             </div>
             <div id="advanced_plan">
@@ -105,8 +102,7 @@
               </span>
               <span class="plan-details-advanced">
                 <span class="plan-type">Advanced</span><br>
-                <span class="advanced-price">$12/mo</span><br>
-               
+                <span class="advanced-price">$12/mo</span><br>               
               </span>
             </div>            
             <div id="pro_plan">
@@ -116,8 +112,7 @@
               </span>
               <span class="plan-details-pro">
                 <span class="plan-type">Pro</span><br>
-                <span class="pro-price">$15/mo</span><br>
-               
+                <span class="pro-price">$15/mo</span><br>               
               </span>
             </div>          
           </div>
@@ -141,40 +136,43 @@
           <h1 class="content-title">Pick add-ons</h1>
           <p class="content-subtitle">Add-ons help enhance your gaming experience.</p>
 
-          <div class="add-ons-div">
+          <div class="add-ons-div" id="online_div">
             <div class="add-on-info-div">
-              <input type="checkbox" class="checkboxes" name="">
+              <input type="checkbox" class="checkboxes" id="online">
+              <input type="hidden" id="online_checkbox" value="unchecked">
               <span class="add-on-info">
                 <span class="package" >Online service</span><br>
                 <span class="package-info">Access to multiplayer games</span>
               </span>
             </div>
             <div class="add-on-price">
-              <p>+$1/mo</p>
+              <p class="online-price">+$1/mo</p>
             </div>
           </div>
-          <div class="add-ons-div">
+          <div class="add-ons-div" id="storage_div">
             <div class="add-on-info-div">
-              <input type="checkbox" class="checkboxes" name="">
+              <input type="checkbox" class="checkboxes" id="storage">
+              <input type="hidden" id="storage_checkbox" value="unchecked">
               <span class="add-on-info">
                 <span class="package" >Large storage</span><br>
                 <span class="package-info">Extra 1TB of cloud save</span>
               </span>
             </div>
             <div class="add-on-price">
-              <p>+$2/mo</p>
+              <p class="storage-price">+$2/mo</p>
             </div>
           </div>
-          <div class="add-ons-div">
+          <div class="add-ons-div" id="profile_div">
             <div class="add-on-info-div">
-              <input type="checkbox" class="checkboxes" name="">
+              <input type="checkbox" class="checkboxes" id="profile">
+              <input type="hidden" id="profile_checkbox" value="unchecked">
               <span class="add-on-info">
                 <span class="package" >Customizable profile</span><br>
                 <span class="package-info">Custom theme on your profile</span>
               </span>
             </div>
             <div class="add-on-price">
-              <p>+$2/mo</p>
+              <p class="profile-price">+$2/mo</p>
             </div>
           </div>
         </div>
@@ -184,7 +182,6 @@
         <div id="finishing_up_div">
           <h1 class="content-title">Finishing up</h1>
           <p class="content-subtitle">Double-check everything looks OK before confirming.</p>
-
         </div>
 
         <!-- Dynamically add subscription and add-on selections here -->
@@ -205,11 +202,9 @@
             <button id="previous_btn" >go back</button>
             <button id="btn_disabled" disabled >Next step</button>
           </div>
-        </div>
-        
+        </div>        
       </div>
-    </section>
-    
+    </section>    
   </main>
   <script type="text/javascript" src="assets/js/main.js"></script>
 </body>

@@ -9,6 +9,7 @@ let next = document.querySelector('#btn_disabled');
 let previous = document.querySelector('#previous_btn');
 let btn_div = document.querySelector('.nav-btn-div');
 
+//Personal info section
 function validateName( input_field, msg ) 
 {
 	if ( input_field.value.match('[0-9]') || input_field.value.match('[,./;!@#$%^&*|]')  ) 
@@ -76,30 +77,24 @@ phone_num.oninput = function () {
 	validatePhoneNum( phone_num, 'phone-num-msg' );
 }
 
+//Plan section
 let plan_btn_div = document.querySelector('.btn-div');
 let plan_btn_dot = document.querySelector('#btn-dot');
-
-let plan_details_arcade = document.querySelector('.plan-details-arcade');
-let plan_details_advanced = document.querySelector('.plan-details-advanced');
-let plan_details_pro = document.querySelector('.plan-details-pro');
-
+let arcade_plan_details = document.querySelector('.plan-details-arcade');
+let advanced_plan_details = document.querySelector('.plan-details-advanced');
+let pro_plan_details = document.querySelector('.plan-details-pro');
 let month_btn = document.querySelector('#btn_month');
 let year_btn = document.querySelector('#btn_year');
 let state = document.querySelector('#state');
-
 let arcade_price = document.querySelector('.arcade-price');
 let advanced_price = document.querySelector('.advanced-price');
 let pro_price = document.querySelector('.pro-price');
-
 let arcade_plan = document.querySelector('#arcade_plan');
 let arcade_plan_state = document.querySelector('#arcade_plan_state')
-
 let advanced_plan = document.querySelector('#advanced_plan');
 let advanced_plan_state = document.querySelector('#advanced_plan_state');
-
 let pro_plan = document.querySelector('#pro_plan');
 let pro_plan_state = document.querySelector('#pro_plan_state');
-
 
 arcade_plan.onclick = function () {
 	if ( arcade_plan_state.value == 'not selected' ) 
@@ -135,7 +130,6 @@ advanced_plan.onclick = function () {
 	}
 }
 
-
 pro_plan.onclick = function () {
 	if ( pro_plan_state.value == 'not selected' ) 
 	{
@@ -166,9 +160,9 @@ function planBtnState( dot_sign, current_state )
 		arcade_price.innerHTML = '$90/yr <div class="free-notice">2 months free</div>';
 		advanced_price.innerHTML = '$120/yr <div class="free-notice">2 months free</div>';
 		pro_price.innerHTML = '$150/yr <div class="free-notice">2 months free</div>';
-		plan_details_arcade.setAttribute('class', 'plan-details-arcade-lc');
-		plan_details_advanced.setAttribute('class', 'plan-details-advanced-lc');
-		plan_details_pro.setAttribute('class', 'plan-details-pro-lc');
+		arcade_plan_details.setAttribute('class', 'plan-details-arcade-lc');
+		advanced_plan_details.setAttribute('class', 'plan-details-advanced-lc');
+		pro_plan_details.setAttribute('class', 'plan-details-pro-lc');
 		year_btn.setAttribute('class', 'active-plan');
 		month_btn.setAttribute('class', 'inactive-plan');
 	} 
@@ -179,24 +173,67 @@ function planBtnState( dot_sign, current_state )
 		arcade_price.innerHTML = '$9/mo';
 		advanced_price.innerHTML = '$12/mo';
 		pro_price.innerHTML = '$15/mo';
-		plan_details_arcade.setAttribute('class', 'plan-details-arcade');
-		plan_details_advanced.setAttribute('class', 'plan-details-advanced');
-		plan_details_pro.setAttribute('class', 'plan-details-pro');
+		arcade_plan_details.setAttribute('class', 'plan-details-arcade');
+		advanced_plan_details.setAttribute('class', 'plan-details-advanced');
+		pro_plan_details.setAttribute('class', 'plan-details-pro');
 		year_btn.setAttribute('class', 'inactive-plan');
 		month_btn.setAttribute('class', 'active-plan');
-
-
 	}
 }
 
-//when Next-step button is clicked
-next.onclick = function () {
-	nextPageButton( next, num_page );
+//Add-on section
+let online_checkbox = document.querySelector('#online');
+let storage_checkbox = document.querySelector('#storage');
+let profile_checkbox = document.querySelector('#profile');
+let online_checkbox_state = document.querySelector('#online_checkbox');
+let storage_checkbox_state = document.querySelector('#storage_checkbox');
+let profile_checkbox_state = document.querySelector('#profile_checkbox');
+
+online_checkbox.onchange = function () {
+	if ( online_checkbox_state.value == 'unchecked' )
+	{
+		online_checkbox_state.value = 'checked';
+	}
+	else
+	{
+		online_checkbox_state.value = 'unchecked';
+	}
+	addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
+}
+
+storage_checkbox.onchange = function () {
+	if ( storage_checkbox_state.value == 'unchecked' )
+	{
+		storage_checkbox_state.value = 'checked';
+	}
+	else
+	{
+		storage_checkbox_state.value = 'unchecked';
+	}
+	addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
+}
+
+profile_checkbox.onchange = function () {
+	if ( profile_checkbox_state.value == 'unchecked' )
+	{
+		profile_checkbox_state.value = 'checked';
+		document.querySelector('.add-ons-div').setAttribute('id', 'checked_addon');
+	}
+	else
+	{
+		profile_checkbox_state.value = 'unchecked';
+	}
+	addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
 }
 
 //when Go-back button is clicked
 previous.onclick = function () {
 	previousPageButton( previous, num_page );
+}
+
+//when Next-step button is clicked
+next.onclick = function () {
+	nextPageButton( next, num_page );
 }
 
 //decides Go-back and Next-step button state( Abled or Disabled )
@@ -208,12 +245,10 @@ function btnState( previous, next )
 	}
 	else if( index > 0 ){
 		previous.style.display = 'block';
-
 		if ( index == 4 ) 
 		{
 			btn_div.style.display = 'none';
 		}
-
 		if ( index == 3 ) 
 		{
 			next_btn.innerHTML = 'Confirm';
@@ -225,54 +260,21 @@ function btnState( previous, next )
 	}
 }
 
-function nextPageButton( next, num_page ) 
-{
-	index++;
-	btnState( previous, next );
-	for ( var i = 0; i <= ( num_page - 1 ); i++ ) 
-	{
-		if ( i == index ) 
-		{
-			document.querySelector('#'+page_section_arr[i]).style.display = 'block';
-			document.querySelector('#step_'+( i + 1 )+'_div').setAttribute('class', 'active');
-			//next.disabled = 'disabled';
-			if ( index == ( num_page - 1 )) 
-			{
-				next.style.display = 'none';
-			}
-		} 
-		else 
-		{
-			document.querySelector('#'+page_section_arr[i]).style.display = 'none';
-			document.querySelector('#step_'+( i + 1 )+'_div').setAttribute('class','inactive');
-		}
-	}
-	
-}
 
 function previousPageButton( previous, num_page ) 
 {
 	index--;
-	
 	btnState( previous, next );
-	for ( var i = 0; i <= ( num_page - 1 ); i++ ) 
-	{
-		if ( i == index ) 
-		{
-			document.querySelector('#'+page_section_arr[i]).style.display = 'block';
-			document.querySelector('#step_'+( i + 1 )+'_div').setAttribute('class', 'active');
-			next.disabled = '';
-			next.setAttribute( 'id', 'next_btn' );
-		} 
-		else 
-		{
-			document.querySelector('#'+page_section_arr[i]).style.display = 'none';
-			document.querySelector('#step_'+( i + 1 )+'_div').setAttribute('class', 'inactive');
-		}
-	}
 }
-window.oninput = function () {
-	personalInfoNextBtnState( name, email, phone_num, next );
+
+function nextPageButton( next, num_page ) 
+{
+	index++;
+	btnState( previous, next );
+	if ( index == ( num_page - 1 )) 
+	{
+		next.style.display = 'none';
+	}
 }
 
 function personalInfoNextBtnState( name, email, phone_num, next ) 
@@ -288,12 +290,7 @@ function personalInfoNextBtnState( name, email, phone_num, next )
 		next.disabled = 'disabled';	
 	}
 }
-window.onclick = function () {
-	if ( index == 1 ) 
-	{
-		planNextBtnState( arcade_plan_state, advanced_plan_state, pro_plan_state, next );
-	}
-}
+
 
 function planNextBtnState( arcade_plan, advanced_plan, pro_plan, btn ) 
 {	
@@ -307,4 +304,79 @@ function planNextBtnState( arcade_plan, advanced_plan, pro_plan, btn )
 		next.disabled = '';
 		next.setAttribute( 'id', 'btn_disabled' );
 	}
+}
+
+function planTypePrice( plan_type ) 
+{
+	if ( plan_type.value == 'yearly' )
+	{
+		document.querySelector('.online-price').innerHTML = '+$10/yr';
+		document.querySelector('.storage-price').innerHTML = '+$20/yr';
+		document.querySelector('.profile-price').innerHTML = '+$20/yr';
+	}
+	else
+	{
+		document.querySelector('.online-price').innerHTML = '+$1/mo';
+		document.querySelector('.storage-price').innerHTML = '+$2/mo';
+		document.querySelector('.profile-price').innerHTML = '+$2/mo';
+	}
+}
+
+function addOnNextBtnState( plan_type , online_checkbox_state, storage_checkbox_state, profile_checkbox_state, btn ) 
+{
+	planTypePrice( plan_type );
+
+	if ( online_checkbox_state.value == 'checked' || storage_checkbox_state.value == 'checked' || profile_checkbox_state.value == 'checked' ) 
+	{
+		
+		btn.setAttribute( 'id', 'next_btn' );
+		btn.disabled = '';
+		//btn.style.backgroundColor = 'green';
+
+	}
+	else
+	{	
+		btn.setAttribute( 'id', 'btn_disabled');
+		btn.disabled = 'disabled';
+		//alert( btn.getAttribute( 'id') );
+		//btn.style.backgroundColor = 'red';
+		//alert('none checked');
+	}
+}
+
+function currentPage( index, num_page, page_section_arr ) 
+{	
+	for ( var i = 0; i < num_page; i++ ) 
+	{
+		if ( i == index ) 
+		{
+			document.querySelector('#'+page_section_arr[ index ]).style.display = 'block';
+			document.querySelector('#step_'+( index + 1 )+'_div').setAttribute('class', 'active');
+		}
+		else
+		{
+			document.querySelector('#'+page_section_arr[ i ]).style.display = 'none';
+			document.querySelector('#step_'+( i + 1 )+'_div').setAttribute('class', 'inactive');
+		}
+	}
+}
+
+window.oninput = function () {
+	personalInfoNextBtnState( name, email, phone_num, next );
+}
+
+window.onclick = function () {
+	if ( index == 0 ) 
+	{
+		personalInfoNextBtnState( name, email, phone_num, next );
+	}
+	else if ( index == 1 ) 
+	{	
+		planNextBtnState( arcade_plan_state, advanced_plan_state, pro_plan_state, next );
+	}
+	else if( index == 2 )
+	{
+		addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
+	}
+	currentPage( index, num_page, page_section_arr );
 }

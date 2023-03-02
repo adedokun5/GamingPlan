@@ -322,7 +322,7 @@ input:focus{
 
 	.add-on-price p{
 		text-align: right;
-		color: hsl(228, 100%, 84%);
+		color: hsl(243, 100%, 62%);
 	}
 
 	/* Thank you section */
@@ -474,6 +474,14 @@ input:focus{
 		font-weight: bold;
 		font-size: 18px;
 		margin-bottom: 5%;
+	}
+
+	.checked_addon{
+		background-color: red;
+	}
+
+	.unchecked_addon{
+		background-color: white;
 	}
 
 	#personal_info_div, #plan_div, #add_on_div, #finishing_up_div, #thank_you_div{
@@ -638,7 +646,7 @@ input:focus{
 
 	.add-on-price{
 		margin-top: 2.3%;
-		color: hsl(228, 100%, 84%);
+		color: hsl(243, 100%, 62%);
 	}
 
 	/* Thank you section */
