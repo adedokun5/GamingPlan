@@ -9,6 +9,11 @@ let next = document.querySelector('#btn_disabled');
 let previous = document.querySelector('#previous_btn');
 let btn_div = document.querySelector('.nav-btn-div');
 
+let reset_btn = document.querySelector("#reset_index");
+
+reset_btn.onclick = function () {
+	index = 1;
+}
 //Personal info section
 function validateName( input_field, msg ) 
 {
@@ -226,6 +231,39 @@ profile_checkbox.onchange = function () {
 	addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
 }
 
+//Finishing Section
+
+function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type  ) 
+{
+	let plan_name;
+	let plan_price;
+	if ( arcade_plan_state.value == 'selected' ) 
+	{
+		plan_name = 'Arcade';
+		plan_price = 9;
+	}
+	else if ( advanced_plan_state.value == 'selected' ) 
+	{
+		plan_name = 'Advanced';
+		plan_price = 12;
+	}
+	else
+	{
+		plan_name = 'Pro';
+		plan_price = 15;
+	}
+
+	document.querySelector('#user_plan_type').innerHTML = plan_name+'('+sub_type.value +')';
+
+	if ( sub_type == 'yearly') 
+	{
+		let sub_price = plan_price * 10;
+	}
+
+	document.querySelector('#user_plan_price').innerHTML = plan_name+'('+sub_type.value +')';
+
+}
+
 //when Go-back button is clicked
 previous.onclick = function () {
 	previousPageButton( previous, num_page );
@@ -377,6 +415,10 @@ window.onclick = function () {
 	else if( index == 2 )
 	{
 		addOnNextBtnState( state, online_checkbox_state, storage_checkbox_state, profile_checkbox_state, next );
+	}
+	else if( index == 3 )
+	{
+		userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, state );
 	}
 	currentPage( index, num_page, page_section_arr );
 }

@@ -649,6 +649,26 @@ input:focus{
 		color: hsl(243, 100%, 62%);
 	}
 
+	/* Finishing Section */
+	.ticked-plan{
+		width: 80%;
+		border: 1px solid;
+	}
+
+	.user-plan{
+		display: flex;
+		justify-content: space-between;
+		padding: 4%;
+	}
+
+	.user-plan-type{
+
+	}
+
+	.user-plan-price{
+
+	}
+
 	/* Thank you section */
 	#thank_you_div{
 		text-align: center;
