@@ -232,6 +232,21 @@ profile_checkbox.onchange = function () {
 }
 
 //Finishing Section
+function addOns( online, storage, profile, sub_type ) 
+{
+	if ( online.value == 'checked' ) 
+	{
+
+	}
+	if ( storage.value == 'checked' ) 
+	{
+		
+	}
+	if ( profile.value == 'checked' ) 
+	{
+		
+	}
+}
 
 function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type  ) 
 {
@@ -253,16 +268,25 @@ function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, s
 		plan_price = 15;
 	}
 
-	document.querySelector('#user_plan_type').innerHTML = plan_name+'('+sub_type.value +')';
-
-	if ( sub_type == 'yearly') 
+	
+	let sub_price
+	if ( sub_type.value == 'yearly') 
 	{
-		let sub_price = plan_price * 10;
+		sub_price = plan_price * 10+'/yr';
+	}
+	else
+	{
+		sub_price = plan_price+'/mo';
 	}
 
-	document.querySelector('#user_plan_price').innerHTML = plan_name+'('+sub_type.value +')';
+	document.querySelector('#user_plan_type').innerHTML = plan_name+'('+sub_type.value +')';
+	document.querySelector('#user_plan_price').innerHTML = sub_price;
 
 }
+
+
+
+
 
 //when Go-back button is clicked
 previous.onclick = function () {

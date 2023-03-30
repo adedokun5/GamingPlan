@@ -488,7 +488,7 @@ input:focus{
 		margin: 5% 5% 0% 5%;
 	}
 
-	#plan_div, #add_on_div, #finishing_up_div, #thank_you_div{
+	#plan_div, #add_on_div, #personal_info_div, #thank_you_div{
 		display: none;
 	}
 
@@ -651,7 +651,7 @@ input:focus{
 
 	/* Finishing Section */
 	.ticked-plan{
-		width: 80%;
+		width: 99%;
 		border: 1px solid;
 	}
 
@@ -659,6 +659,12 @@ input:focus{
 		display: flex;
 		justify-content: space-between;
 		padding: 4%;
+	}
+
+	.ticked-addon{
+		display: flex;
+		justify-content: space-between;
+		padding: 1%;
 	}
 
 	.user-plan-type{
