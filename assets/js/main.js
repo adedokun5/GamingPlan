@@ -232,20 +232,82 @@ profile_checkbox.onchange = function () {
 }
 
 //Finishing Section
-function addOns( online, storage, profile, sub_type ) 
+function onlineAddon( online, sub_type ) 
 {
 	if ( online.value == 'checked' ) 
 	{
-
+		document.querySelector('#f_online').style.display = 'block';
+		if ( sub_type.value == 'yearly' ) 
+		{
+			document.querySelector('#online_addon_price').innerHTML = '+$10/yr';
+			return 10;
+		}
+		else
+		{
+			document.querySelector('#online_addon_price').innerHTML = '+$1/mo';
+			return 1;
+		}
 	}
+	else
+	{
+		document.querySelector('#f_online').style.display = 'none';
+		return 0;
+	}
+}
+
+function storageAddon( storage, sub_type ) 
+{
 	if ( storage.value == 'checked' ) 
 	{
-		
+		document.querySelector('#f_storage').style.display = 'block';
+		if ( sub_type.value == 'yearly' ) 
+		{
+			document.querySelector('#storage_addon_price').innerHTML = '+$20/yr';
+			return 20;
+		}
+		else
+		{
+			document.querySelector('#storage_addon_price').innerHTML = '+$2/mo';
+			return 2;
+		}
 	}
+	else
+	{
+		document.querySelector('#f_storage').style.display = 'none';
+		return 0;
+	}
+}
+
+function profileAddon( profile, sub_type ) 
+{
 	if ( profile.value == 'checked' ) 
 	{
-		
+		document.querySelector('#f_profile').style.display = 'block';
+		if ( sub_type.value == 'yearly' ) 
+		{
+			document.querySelector('#profile_addon_price').innerHTML = '+$20/yr';
+			return 20;
+		}
+		else
+		{
+			document.querySelector('#profile_addon_price').innerHTML = '+$2/mo';
+			return 2;
+		}
 	}
+	else
+	{
+		document.querySelector('#f_profile').style.display = 'none';
+		return 0;
+	}
+}
+
+function addOns( online, storage, profile, sub_type ) 
+{
+	
+	let total_price = onlineAddon( online, sub_type ) + storageAddon( storage, sub_type ) + profileAddon( profile, sub_type );
+
+	document.querySelector('#total_price').innerHTML = total_price;
+
 }
 
 function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type  ) 
@@ -284,7 +346,10 @@ function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, s
 
 }
 
-
+function totalPrice( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state  ) 
+{
+	addOns( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state );
+}
 
 
 
@@ -443,6 +508,7 @@ window.onclick = function () {
 	else if( index == 3 )
 	{
 		userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, state );
+		totalPrice( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state  );
 	}
 	currentPage( index, num_page, page_section_arr );
 }

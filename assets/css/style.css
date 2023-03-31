@@ -81,6 +81,9 @@ input:focus{
 	font-weight: bolder;
 }
 
+#f_online, #f_storage, #f_profile{
+	display: none;
+}
 
 @media screen and ( max-width: 996px ){
 	#body{
