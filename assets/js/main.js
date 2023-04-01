@@ -158,9 +158,9 @@ plan_btn_div.onclick = function () {
 
 function planBtnState( dot_sign, current_state ) 
 {
-	if ( current_state.value == 'monthly' ) 
+	if ( current_state.value == 'Monthly' ) 
 	{
-		current_state.value = 'yearly';
+		current_state.value = 'Yearly';
 		dot_sign.style.left = 32+'px';
 		arcade_price.innerHTML = '$90/yr <div class="free-notice">2 months free</div>';
 		advanced_price.innerHTML = '$120/yr <div class="free-notice">2 months free</div>';
@@ -173,7 +173,7 @@ function planBtnState( dot_sign, current_state )
 	} 
 	else 
 	{
-		current_state.value = 'monthly';
+		current_state.value = 'Monthly';
 		dot_sign.style.left = 1+'px';
 		arcade_price.innerHTML = '$9/mo';
 		advanced_price.innerHTML = '$12/mo';
@@ -237,7 +237,7 @@ function onlineAddon( online, sub_type )
 	if ( online.value == 'checked' ) 
 	{
 		document.querySelector('#f_online').style.display = 'block';
-		if ( sub_type.value == 'yearly' ) 
+		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#online_addon_price').innerHTML = '+$10/yr';
 			return 10;
@@ -260,7 +260,7 @@ function storageAddon( storage, sub_type )
 	if ( storage.value == 'checked' ) 
 	{
 		document.querySelector('#f_storage').style.display = 'block';
-		if ( sub_type.value == 'yearly' ) 
+		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#storage_addon_price').innerHTML = '+$20/yr';
 			return 20;
@@ -283,7 +283,7 @@ function profileAddon( profile, sub_type )
 	if ( profile.value == 'checked' ) 
 	{
 		document.querySelector('#f_profile').style.display = 'block';
-		if ( sub_type.value == 'yearly' ) 
+		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#profile_addon_price').innerHTML = '+$20/yr';
 			return 20;
@@ -299,15 +299,6 @@ function profileAddon( profile, sub_type )
 		document.querySelector('#f_profile').style.display = 'none';
 		return 0;
 	}
-}
-
-function addOns( online, storage, profile, sub_type ) 
-{
-	
-	let total_price = onlineAddon( online, sub_type ) + storageAddon( storage, sub_type ) + profileAddon( profile, sub_type );
-
-	document.querySelector('#total_price').innerHTML = total_price;
-
 }
 
 function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type  ) 
@@ -330,28 +321,33 @@ function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, s
 		plan_price = 15;
 	}
 
-	
 	let sub_price
-	if ( sub_type.value == 'yearly') 
-	{
-		sub_price = plan_price * 10+'/yr';
+	let final_price;
+	if ( sub_type.value == 'Yearly') 
+	{		
+		sub_price = '$'+plan_price * 10+'/yr';
+		final_price = plan_price * 10;
 	}
 	else
 	{
-		sub_price = plan_price+'/mo';
+		sub_price = '$'+plan_price+'/mo';
+		final_price = plan_price;
 	}
 
 	document.querySelector('#user_plan_type').innerHTML = plan_name+'('+sub_type.value +')';
 	document.querySelector('#user_plan_price').innerHTML = sub_price;
-
+	return final_price;
 }
-
-function totalPrice( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state  ) 
+function planTotalPrice( online, storage, profile, arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type ) 
 {
-	addOns( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state );
+	let plan_price = userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type );
+	let online_price = onlineAddon( online, sub_type );
+	let storage_price = storageAddon( storage, sub_type );
+	let profile_price = profileAddon( profile, sub_type );
+	let total_price = plan_price + online_price + storage_price  + profile_price;
+
+	document.querySelector('#total_price').innerHTML = '$'+total_price+'/yr';
 }
-
-
 
 //when Go-back button is clicked
 previous.onclick = function () {
@@ -435,17 +431,19 @@ function planNextBtnState( arcade_plan, advanced_plan, pro_plan, btn )
 
 function planTypePrice( plan_type ) 
 {
-	if ( plan_type.value == 'yearly' )
+	if ( plan_type.value == 'Yearly' )
 	{
 		document.querySelector('.online-price').innerHTML = '+$10/yr';
 		document.querySelector('.storage-price').innerHTML = '+$20/yr';
 		document.querySelector('.profile-price').innerHTML = '+$20/yr';
+		document.querySelector('#total_text').innerHTML = 'Total(per year)';
 	}
 	else
 	{
 		document.querySelector('.online-price').innerHTML = '+$1/mo';
 		document.querySelector('.storage-price').innerHTML = '+$2/mo';
 		document.querySelector('.profile-price').innerHTML = '+$2/mo';
+		document.querySelector('#total_text').innerHTML = 'Total(per month)';
 	}
 }
 
@@ -458,16 +456,11 @@ function addOnNextBtnState( plan_type , online_checkbox_state, storage_checkbox_
 		
 		btn.setAttribute( 'id', 'next_btn' );
 		btn.disabled = '';
-		//btn.style.backgroundColor = 'green';
-
 	}
 	else
 	{	
 		btn.setAttribute( 'id', 'btn_disabled');
 		btn.disabled = 'disabled';
-		//alert( btn.getAttribute( 'id') );
-		//btn.style.backgroundColor = 'red';
-		//alert('none checked');
 	}
 }
 
@@ -508,7 +501,7 @@ window.onclick = function () {
 	else if( index == 3 )
 	{
 		userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, state );
-		totalPrice( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, state  );
+		planTotalPrice( online_checkbox_state, storage_checkbox_state, profile_checkbox_state, arcade_plan_state, advanced_plan_state, pro_plan_state, state );
 	}
 	currentPage( index, num_page, page_section_arr );
 }

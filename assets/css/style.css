@@ -655,7 +655,8 @@ input:focus{
 	/* Finishing Section */
 	.ticked-plan{
 		width: 99%;
-		border: 1px solid;
+		background-color: hsl(231, 100%, 99%);
+		border-radius: 3px;
 	}
 
 	.user-plan{
@@ -670,13 +671,12 @@ input:focus{
 		padding: 1%;
 	}
 
-	.user-plan-type{
-
+	#user_plan_type, #user_plan_price{
+		color: hsl(213, 96%, 18%); 
+		font-size: 20px;
+		font-style: bolder;
 	}
 
-	.user-plan-price{
-
-	}
 
 	/* Thank you section */
 	#thank_you_div{
