@@ -1,4 +1,4 @@
-//Creating page section array
+//page section array
 let page_section_arr = 
 [ 'personal_info_div', 'plan_div', 'add_on_div', 'finishing_up_div', 'thank_you_div'];
 
@@ -9,11 +9,11 @@ let next = document.querySelector('#btn_disabled');
 let previous = document.querySelector('#previous_btn');
 let btn_div = document.querySelector('.nav-btn-div');
 
-let reset_btn = document.querySelector("#reset_index");
-
-reset_btn.onclick = function () {
-	index = 1;
+function resetIndex( section ) 
+{
+	index = section;
 }
+
 //Personal info section
 function validateName( input_field, msg ) 
 {
@@ -65,11 +65,12 @@ function validatePhoneNum( input_field, msg )
 		return 0;
 	}
 }
-
+//Get User Inputs
 let name = document.querySelector('#name');
 let email = document.querySelector('#email');
 let phone_num = document.querySelector('#phone_num');
 
+//Validating inputs
 name.oninput = function ( ) {
 	validateName( name, 'name-msg' );
 }
@@ -236,7 +237,7 @@ function onlineAddon( online, sub_type )
 {
 	if ( online.value == 'checked' ) 
 	{
-		document.querySelector('#f_online').style.display = 'block';
+		document.querySelector('#f_online').style.display = 'flex';
 		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#online_addon_price').innerHTML = '+$10/yr';
@@ -259,7 +260,7 @@ function storageAddon( storage, sub_type )
 {
 	if ( storage.value == 'checked' ) 
 	{
-		document.querySelector('#f_storage').style.display = 'block';
+		document.querySelector('#f_storage').style.display = 'flex';
 		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#storage_addon_price').innerHTML = '+$20/yr';
@@ -282,7 +283,7 @@ function profileAddon( profile, sub_type )
 {
 	if ( profile.value == 'checked' ) 
 	{
-		document.querySelector('#f_profile').style.display = 'block';
+		document.querySelector('#f_profile').style.display = 'flex';
 		if ( sub_type.value == 'Yearly' ) 
 		{
 			document.querySelector('#profile_addon_price').innerHTML = '+$20/yr';
@@ -333,11 +334,11 @@ function userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, s
 		sub_price = '$'+plan_price+'/mo';
 		final_price = plan_price;
 	}
-
 	document.querySelector('#user_plan_type').innerHTML = plan_name+'('+sub_type.value +')';
 	document.querySelector('#user_plan_price').innerHTML = sub_price;
 	return final_price;
 }
+
 function planTotalPrice( online, storage, profile, arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type ) 
 {
 	let plan_price = userPlanType( arcade_plan_state, advanced_plan_state, pro_plan_state, sub_type );
@@ -346,7 +347,14 @@ function planTotalPrice( online, storage, profile, arcade_plan_state, advanced_p
 	let profile_price = profileAddon( profile, sub_type );
 	let total_price = plan_price + online_price + storage_price  + profile_price;
 
-	document.querySelector('#total_price').innerHTML = '$'+total_price+'/yr';
+	if ( sub_type.value == 'Yearly' ) 
+	{
+		document.querySelector('#total_price').innerHTML = '+$'+total_price+'/yr';
+	}
+	else
+	{
+		document.querySelector('#total_price').innerHTML = '+$'+total_price+'/mo';
+	}
 }
 
 //when Go-back button is clicked
@@ -382,7 +390,6 @@ function btnState( previous, next )
 		}
 	}
 }
-
 
 function previousPageButton( previous, num_page ) 
 {

@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <title>Frontend Mentor | Multi-step form</title>
@@ -186,36 +187,29 @@
             <span class="user-plan">
               <span class="">
                 <span id="user_plan_type"></span><br>
-                <button id="reset_index" >Change</button>
+                <button id="reset_index" onclick="resetIndex( 1 )" >Change</button>
               </span>
               <span id="user_plan_price"></span>
             </span>
-            <span class="ticked-addon" id="f_online">
-              <span class="">
-                <span id="online_addon">Online service</span><br>
-              </span>
-              <span id="online_addon_price">$9/mo</span>
-            </span>
-            <span class="ticked-addon" id="f_storage">
-              <span class="">
-                <span id="storage_addon">Large storage</span><br>
-              </span>
-              <span id="storage_addon_price">$9/mo</span>
-            </span>
-            <span class="ticked-addon" id="f_profile">
-              <span class="">
-                <span id="profile_addon">Customizable profile</span><br>
-              </span>
-              <span id="profile_addon_price">$9/mo</span>
-            </span>
+
+            <div  id="f_online" class="ticked-addon">
+              <span id="online_addon">Online service</span>
+              <span id="online_addon_price"></span>
+            </div>
+            <div class="ticked-addon" id="f_storage">
+              <span id="storage_addon">Large storage</span>
+              <span id="storage_addon_price"></span>
+            </div>
+            <div class="ticked-addon" id="f_profile">
+              <span id="profile_addon">Customizable profile</span>
+              <span id="profile_addon_price"></span>
+            </div>
           </div>
-          <div>
+          <div class="total-div">
             <span id="total_text"></span>
             <span id="total_price"></span>
           </div>
         </div>
-
-        <!-- Dynamically add subscription and add-on selections here -->
         <!-- Step 4 end -->
 
         <!-- Step 5 start -->
@@ -228,6 +222,7 @@
         </div>
         <!-- Step 5 end -->
 
+        <!--Control buttons -->
         <div class="nav-btn-div">
           <div class="nav-btns">
             <button id="previous_btn" >go back</button>

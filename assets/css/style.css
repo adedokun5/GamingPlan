@@ -24,6 +24,10 @@ input:focus{
 	border: 0px;
 }
 
+#reset_index{
+	text-decoration: underline;
+}
+
 #btn_disabled{
 	background-color: hsl(229, 24%, 87%);
 	position: absolute;
@@ -34,7 +38,6 @@ input:focus{
 	width: 110px;
 	height: 50px;
 	padding: 1%;
-
 }
 
 .active{
@@ -81,8 +84,60 @@ input:focus{
 	font-weight: bolder;
 }
 
+/* Finishing Section */
 #f_online, #f_storage, #f_profile{
-	display: none;
+	justify-content: space-between;
+}
+
+.ticked-plan{
+	background-color: hsl(231, 100%, 99%);
+	border-radius: 5px;
+}
+
+.user-plan{
+	display: flex;
+	justify-content: space-between;
+	padding: 4%;
+}
+
+.ticked-addon{
+	padding: 1% 6% 1% 6%;
+}
+
+#online_addon, #storage_addon, #profile_addon{
+	color: hsl(231, 11%, 63%);
+	font-weight: bold;
+	display: inline-block;
+}
+
+#user_plan_type, #user_plan_price{
+	color: hsl(213, 96%, 18%); 
+	font-size: 20px;
+	font-style: bolder;
+}
+
+#online_addon_price, #storage_addon_price, #profile_addon_price{
+	color: hsl(213, 96%, 18%);
+	display: inline-block;
+}
+
+.total-div{
+	margin-top: 10%;
+	display: flex;
+	justify-content: space-around;
+}
+
+#total_text{
+	color: hsl(231, 11%, 63%);
+	font-weight: bold;
+	font-size: 18px;
+
+}
+
+#total_price{
+	color: hsl(243, 100%, 62%);
+	font-size: 20px;
+	font-weight: bold;
 }
 
 @media screen and ( max-width: 996px ){
@@ -126,7 +181,6 @@ input:focus{
 		display: none;
 	}
 
-	
 	/*Steps content section */
 	.step-contents{
 		width: 95%;
@@ -156,7 +210,7 @@ input:focus{
 		margin-bottom: 7%;
 	}
 
-	#personal_info_div, #add_on_div, #finishing_up_div, #thank_you_div{
+	#plan_div, #add_on_div, #finishing_up_div, #thank_you_div{
 		display: none;
 	}
 
@@ -277,10 +331,9 @@ input:focus{
 		position: relative;
 	}
 
-
 	/* Add-ons section */
 	.add-ons-div{
-		border: 1px solid;
+		border: 1px solid hsl(229, 24%, 87%);
 		display: flex;
 		height: 80px;
 		border-radius: 5px;
@@ -342,7 +395,6 @@ input:focus{
 
 	.thank-you-text{
 		margin: 3% 0%;
-
 		font-size: 30px;
 		font-weight: bolder;
 		color: hsl(213, 96%, 18%);
@@ -358,11 +410,9 @@ input:focus{
 		bottom: 0%;
 		background-color: hsl(0, 0%, 100%);
 	}	
-
 }
 
 @media screen and ( min-width: 420px ){
-
 	.sidebar{
 		height: 125px;
 	}
@@ -374,19 +424,16 @@ input:focus{
 
 	.nav-btn-div{
 		padding: 3% 0% 3% 0%;
-
 	}
 }
 
 @media screen and ( min-width: 530px ){
-
 	.sidebar{
 		height: 145px;
 	}
 }
 
 @media screen and ( min-width: 650px ){
-
 	.sidebar{
 		height: 180px;
 	}
@@ -397,16 +444,13 @@ input:focus{
 
 	.nav-btn-div{
 		padding: 1% 0% 1% 0%;
-
 	}
 }
 
 @media screen and ( min-width: 850px ){
-
 	.sidebar{
 		height: 190px;
 	}
-
 }
 
 @media screen and ( min-width: 997px ){
@@ -432,7 +476,7 @@ input:focus{
 	}
 
 	#step_1_div, #step_2_div, #step_3_div, #step_4_div{
-		width: 30px;
+		width: 35px;
 		height: 30px;
 		margin-top: 1%;
 		border: 1px solid #fff;
@@ -442,7 +486,7 @@ input:focus{
 	.step{
 		display: block;
 		margin-top: 5px;
-		margin-left: 10px;
+		margin-left: 8.5px;
 	}
 
 	.step-title{
@@ -491,7 +535,7 @@ input:focus{
 		margin: 5% 5% 0% 5%;
 	}
 
-	#plan_div, #add_on_div, #personal_info_div, #thank_you_div{
+	#plan_div, #add_on_div, #finishing_up_div, #thank_you_div{
 		display: none;
 	}
 
@@ -599,7 +643,6 @@ input:focus{
 		border-radius: 50%;
 		background-color: #fff;
 		position: relative;
-		/*left: 30px;*/
 	}
 
 	.active-plan{
@@ -652,32 +695,6 @@ input:focus{
 		color: hsl(243, 100%, 62%);
 	}
 
-	/* Finishing Section */
-	.ticked-plan{
-		width: 99%;
-		background-color: hsl(231, 100%, 99%);
-		border-radius: 3px;
-	}
-
-	.user-plan{
-		display: flex;
-		justify-content: space-between;
-		padding: 4%;
-	}
-
-	.ticked-addon{
-		display: flex;
-		justify-content: space-between;
-		padding: 1%;
-	}
-
-	#user_plan_type, #user_plan_price{
-		color: hsl(213, 96%, 18%); 
-		font-size: 20px;
-		font-style: bolder;
-	}
-
-
 	/* Thank you section */
 	#thank_you_div{
 		text-align: center;
@@ -712,5 +729,37 @@ input:focus{
 
 	#next_btn{
 		right: 8%;
+	}
+}
+
+@media screen and (min-width: 1150px){
+	#step_1_div, #step_2_div, #step_3_div, #step_4_div{
+		width: 32px;
+		height: 30px;
+		margin-top: 1%;
+		border: 1px solid #fff;
+		border-radius: 50%;
+	}
+
+	.step{
+		display: block;
+		margin-top: 5.5px;
+		margin-left: 8.5px;
+	}
+}
+
+@media screen and (min-width: 1250px){
+	#step_1_div, #step_2_div, #step_3_div, #step_4_div{
+		width: 2rem;
+		height: 2rem;
+		margin-top: 1%;
+		border: 1px solid #fff;
+		border-radius: 50%;
+	}
+
+	.step{
+		display: block;
+		margin-top: 0.4rem;
+		margin-left: 0.7rem;
 	}
 }
